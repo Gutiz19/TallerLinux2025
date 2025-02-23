@@ -54,7 +54,7 @@ Recupera el uso de espacio en disco de los servidores ubuntu.
 ```bash
 ansible -i inventories/invetory.ini all -m command -a "df -h"
 ```
-![Espacio]("results/espacio en disco.png")
+![Espacio](results/espacio%20en%20disco.png)
 
 
 ## 3. PlayBooks
@@ -156,7 +156,7 @@ ansible-playbook -i inventories/invetory.ini web_setup.yml --ask-become-pass
 ```
 #### Ejecución del PlayBook web_setup.yml:
 
-![Playbook_web_setup]("results/playbook web_setup.jpg")
+![Playbook_web_setup](results/playbook%20web_setup.jpg)
 
 ### hardening.yml
 
@@ -210,4 +210,4 @@ Que el login solo pueda hacerse con clave pública/privada.
 
 #### Ejecución del PlayBook hardening.yml
 
-![Playbook_hardening]("results/playbook hardening.jpg")
+![Playbook_hardening](results/playbook%20hardening.jpg)
