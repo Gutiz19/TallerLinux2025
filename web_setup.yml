@@ -1,0 +1,85 @@
+---
+- name: Agrego un virtual host
+  hosts: webserver
+  become: true
+
+  tasks:
+
+  - name: Install apache(httpd)
+    ansible.builtin.yum:
+      name: httpd
+      state: present
+
+  - name: Servicio apache(httpd) iniciado
+    ansible.builtin.systemd_service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: Agregar registro al archivo host
+    ansible.builtin.lineinfile:
+      path: /etc/hosts
+      line: "192.168.56.10 www.ejemplo.com"
+      state: present
+    #Esto ejecuta localmente pero lo hace por ssh:
+    delegate_to: localhost
+    #Esto le dice que no se conecte por SSH a localhost sino que lo ejecute local
+    connection: local
+
+  - name: Existe archivo de conf
+    ansible.builtin.lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      line: "IncludeOptional /etc/httpd/vhost.d/*.conf"
+    notify: Reiniciar apache
+
+  - name: Existe directorio para configurar Virtualhost
+    ansible.builtin.file:
+      path: /etc/httpd/vhost.d
+      state: directory
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Existe directorio para alojar el sitio
+    ansible.builtin.file:
+      path: "/var/www/ejemplo/html"
+      state: directory
+      owner: apache
+      group: apache
+      mode: '0755'
+   
+  - name: Configuracion de VirtualHost
+    ansible.builtin.template:
+      src: ./templates/Virtualhost.j2
+      dest: "/etc/httpd/vhost.d/ejemplo.conf"
+      owner: root
+      group: root
+      mode: '0644'
+    notify: Reiniciar apache
+
+  - name: Existe archivo indice estandar
+    ansible.builtin.template:
+      src: ./templates/index.j2
+      dest: "/var/www/ejemplo/html/index.html"
+      owner: apache
+      group: apache
+      mode: '0644'
+
+  - name: Permitir tráfico HTTP en el firewall
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+    notify: Reiniciar Firewall
+
+  handlers:
+   
+  - name: Reiniciar apache
+    ansible.builtin.systemd_service:
+      name: httpd
+      state: restarted
+
+  - name: Reiniciar Firewall
+    ansible.builtin.systemd_service:
+      name: firewalld
+      state: restarted

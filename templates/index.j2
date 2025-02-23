@@ -1,0 +1,12 @@
+<html>
+    <head>
+	<title> Pagina ejemplo de plantilla </title>
+    </head>
+    <body>
+	<hl> Esta es una página de ejemplo a partir de una planitlla </hl>
+	<br>
+	<p> El hostname es "{{ ansible_hostname }}" </p>
+	<p> La fecha es "{{ ansible_date_time.date }}" y la hora es "{{ ansible_date_time.time }}" </p>
+	<p> La IP es "{{ ansible_all_ipv4_addresses[0] }}" </p>
+    </body>
+</html>

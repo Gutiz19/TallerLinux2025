@@ -1,0 +1,41 @@
+---
+- name: Hardening de seguridad en Ubuntu
+  hosts: ubuntu
+  become: true
+
+  tasks:
+      
+  - name: Habilitar UFW
+    community.general.ufw:
+      state: enabled
+
+  - name: Denegar trafico entrante
+    community.general.ufw:
+      policy: deny
+      direction: incoming
+
+  - name: Permitir SSH
+    community.general.ufw:
+      rule: allow
+      port: 22
+      proto: tcp
+
+  - name: Agregar clave pública del usuario sysadmin
+    authorized_key:
+      user: sysadmin
+      state: present
+      key: "{{ lookup('file','~/.ssh/id_rsa.pub') }}"
+
+  - name: Deshabilitar autenticación por contraseña
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication'
+      line: 'PasswordAuthentication no'
+    notify: Reiniciar SSH
+
+  handlers:
+
+  - name: Reiniciar SSH
+    service:
+      name: ssh
+      state: restarted

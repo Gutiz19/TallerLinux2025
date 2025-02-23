@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+  ServerName www.ejemplo.com"
+  ServerAdmin Webmasters@ejemplo.com
+  DocumentRoot /var/www/ejemplo/html
+
+  <Directory /var/www/ejemplo/html>
+    Options Indexes FollowSymLinks
+    AllowOverride none
+    Require all granted
+  </Directory>
+</VirtualHost>
