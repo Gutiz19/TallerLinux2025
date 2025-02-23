@@ -33,7 +33,7 @@ Se prueba conectividad con el comando:
 ansible all -i inventories/inventory.ini -m ping
 ```
 
-![Conectividad](https://freeimage.host/i/3Hh6Ke1)
+![Conectividad](results/Ping.jpg)
 
 ---
 
