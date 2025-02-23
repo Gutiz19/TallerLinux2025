@@ -1,0 +1,8 @@
+Verificar tiempo de activcidad (uptime) en todos los servidores:
+ansible -i inventories/inventory.ini all -m command -a "uptime -p"
+
+Instalar apache en los servidores web:
+ansible -i inventories/inventory.ini webserver -m package -a "name=httpd state=present" --become --ask-become-pass
+
+Recuperar el uso de espacio en disco en los servidores ubuntu>
+ansible -i inventories/inventory.ini all -m command -a "df -h" 
