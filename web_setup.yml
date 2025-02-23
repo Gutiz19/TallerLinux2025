@@ -19,7 +19,7 @@
   - name: Agregar registro al archivo host
     ansible.builtin.lineinfile:
       path: /etc/hosts
-      line: "192.168.56.10 www.ejemplo.com"
+      line: "192.168.56.10 www.ejemplo.com.uy"
       state: present
     #Esto ejecuta localmente pero lo hace por ssh:
     delegate_to: localhost
