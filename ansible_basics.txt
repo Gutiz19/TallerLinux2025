@@ -1,0 +1,27 @@
+1. ¿Qué es Ansible y por qué es "sin agente" (agentless)?
+
+Ansible es una herramienta de automatizacion de tareas y configuraciones en multiples servidores.
+Es sin agente porque no requiere la instalacion de software adicional en los servidores administrados, se conecta mediante SSH y se ejecutan las tareas de forma remota.
+
+2. Explica la diferencia entre un comando ad-hoc y un playbook.
+
+El comando ad-hoc es una ejecución rápida de una tarea en servidores remotos sin necesidad de escribir un archivo. Se usa para tareas simples o de diagnóstico, como por ejemlo: ansible all -i inventory.ini -m ping. Esto verifica las conexiones con todos los nodos del inventario.
+Playbook es un archivo YAML donde se definen múltiples tareas de manera estructurada, permitiendo ejecutar configuraciones complejas de forma repetitiva y organizada.
+
+3. ¿Qué es la idempotencia y por qué es importante en Ansible?
+
+La idempotencia es la propiedad que permite que una acción se ejecute múltiples veces sin cambiar el resultado final si el sistema ya está en el estado deseado.
+Garantiza que los servidores mantengan un estado predecible.
+Reduce el riesgo de aplicar cambios innecesarios.
+Optimiza el rendimiento al evitar tareas repetitivas.
+
+4. ¿Cómo funcionan los handlers y cuándo deberías usarlos?
+
+Los handlers son tareas especiales en Ansible que se ejecutan solo cuando una tarea específica cambia algo en el sistema. Se activan con notify.
+
+5. ¿Cómo verificas errores de sintaxis en un playbook de Ansible?
+
+Para verificar errores de sintaxis en un playbook antes de ejecutarlo, usa:
+ansible-playbook nombre_playbook.yml --syntax-check
+Modo detallado: agregando -vvv al final de la linea, muestra más detalles en la ejecución para depuración.
+Modo "dry-run" (--check): Simula la ejecución sin aplicar cambios reales.
