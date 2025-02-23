@@ -42,19 +42,19 @@ Verifica el tiempo de actividad (uptime) en todos los servidores.
 ```bash
 ansible -i inventories/invetory.ini all -m command -a "uptime -p"
 ```
-![Uptime](https://freeimage.host/i/3HjHGea)
+![Uptime](results/Uptime.jpg)
 
 Instala apache en los servidores web. 
 ```bash
 ansible -i inventories/invetory.ini webserver -m package -a "name=httpd state=present" --become --ask-become-pass
 ```
-![Apache](https://freeimage.host/i/3HjHDmb)
+![Apache](results/apache.png)
 
 Recupera el uso de espacio en disco de los servidores ubuntu.
 ```bash
 ansible -i inventories/invetory.ini all -m command -a "df -h"
 ```
-![Espacio](https://freeimage.host/i/3HjJkGV)
+![Espacio]("results/espacio en disco.png")
 
 
 ## 3. PlayBooks
@@ -156,7 +156,7 @@ ansible-playbook -i inventories/invetory.ini web_setup.yml --ask-become-pass
 ```
 #### Ejecución del PlayBook web_setup.yml:
 
-![Playbook_web_setup](https://freeimage.host/i/3JHWVjI)
+![Playbook_web_setup]("results/playbook web_setup.jpg")
 
 ### hardening.yml
 
@@ -210,4 +210,4 @@ Que el login solo pueda hacerse con clave pública/privada.
 
 #### Ejecución del PlayBook hardening.yml
 
-![Playbook_hardening](https://freeimage.host/i/3JHvSus)
+![Playbook_hardening]("results/playbook hardening.jpg")
