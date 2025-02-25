@@ -13,17 +13,17 @@ Se generan tres grupos llamdos "ubuntu", "centos" y "webserver". El contenido de
 
 ```bash
 [centos]
-centos-srv ansible_host=192.168.56.10
+centos1 ansible_host=192.168.1.28
 
 [ubuntu]
-ubuntu-srv ansible_host=192.168.56.20
+ubuntu1 ansible_host=192.168.1.29
 
 [linux:children]
 centos
 ubuntu
 
 [webserver]
-centos-srv
+centos1
 
 [linux:vars]
 ansible_user=sysadmin
@@ -84,7 +84,7 @@ El contenido del PlayBook es el siguiente:
   - name: Agregar registro al archivo host
     ansible.builtin.lineinfile:
       path: /etc/hosts
-      line: "192.168.56.10 www.ejemplo.com.uy"
+      line: "{{ ansible_host }} www.ejemplo.com.uy"
       state: present
     #Esto ejecuta localmente pero lo hace por ssh:
     delegate_to: localhost
