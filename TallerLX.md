@@ -1,9 +1,10 @@
 # EVALUACIÓN Obligatorio
 
 | **GRUPO** | M3A N3A |
-| **FECHA** | M3A: 17/02/2025, N3A: 17/02/2025 |
+| **FECHA** | 24/02/2025 |
 | **MATERIA** | Taller de Servidores Linux |
 | **CARRERA** | All - ASA |
+| **ESTUDIANTES** | Gonzalo Gutierrez - Sebastian Sequeira |
 
 ---
 
@@ -211,3 +212,13 @@ Que el login solo pueda hacerse con clave pública/privada.
 #### Ejecución del PlayBook hardening.yml
 
 ![Playbook_hardening](results/playbook%20hardening.jpg)
+
+### Referencias
+
+#### ChatGPT
+
+Prompt: "Necesito un README para el repositorio GitHUB: https://github/Gutiz19/TallerLinux2025"
+
+#### Documentacion oficial de Ansible
+
+Se utilizo la documentacion oficial de Ansible para la busqueda de funcionamiento de modulos.
